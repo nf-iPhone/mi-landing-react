@@ -12,7 +12,7 @@ const ABOUT_CARDS = [
     ),
   },
   {
-    title: 'Nuestro Compromiso',
+    title: 'Nuestra Misión',
     content: (
       <>
         Ya sea que busques actualizar tu equipo o reparar el actual, te garantizamos repuestos
@@ -33,7 +33,7 @@ export default function About() {
         <div ref={headerRef} className="section-header fade-in">
           <span className="section-label">Nosotros</span>
           <h2>Pasión por Apple</h2>
-          <p>Compromiso con la tecnología y mantenerte siempre comunicado.</p>
+          <p>Creamos un espacio pensado por y para fanáticos de la manzana.</p>
         </div>
 
         <div className="about-grid">

@@ -1047,6 +1047,137 @@ section {
   font-weight: 600;
 }
 
+/* ── Nuestros Compromisos ── */
+.commitments-section {
+  background: var(--bg);
+}
+
+.commitments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.commitment-card {
+  background: var(--bg-white);
+  padding: 36px 32px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.commitment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.commitment-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.commitment-card h3 {
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.commitment-card p {
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* ── FAQ ── */
+.faq-section {
+  background: var(--bg-white);
+}
+
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.faq-item:hover {
+  border-color: rgba(0, 113, 227, 0.15);
+}
+
+.faq-item[open] {
+  border-color: rgba(0, 113, 227, 0.2);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 20px 52px 20px 24px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+  position: relative;
+  user-select: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '';
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: translateY(-65%) rotate(45deg);
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.faq-item[open] summary::after {
+  transform: translateY(-35%) rotate(-135deg);
+  border-color: var(--accent);
+}
+
+.faq-answer {
+  padding: 0 24px 20px;
+  animation: faqReveal 0.35s var(--ease);
+}
+
+.faq-answer p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+@keyframes faqReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ── Contacto (zona de conversión) ── */
 .contact-section {
   background: #f5f5f7;
@@ -1278,90 +1409,120 @@ section {
 }
 
 /* ── Footer ── */
-footer {
-  background: var(--text);
-  color: var(--text-muted);
-  padding: 48px 0 32px;
+.site-footer {
+  background: #111111;
+  color: #a1a1aa;
+  padding: 56px 0 32px;
 }
 
-.footer-inner {
+.footer-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-main {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
-  padding-bottom: 32px;
+  gap: 40px;
+  padding-bottom: 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+}
+
+.footer-col-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.footer-col-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
 }
 
 .footer-logo {
   font-weight: 700;
-  font-size: 16px;
-  color: #fff;
-}
-
-.footer-links {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-}
-
-.footer-links a {
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.footer-links a:hover {
-  color: #fff;
+  font-size: 1.25rem;
+  color: #ffffff;
+  letter-spacing: -0.02em;
 }
 
 .footer-location {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  text-decoration: none;
-  color: #1d1d1f;
-  padding: 1rem;
-  background-color: #f5f5f7;
-  border-radius: 12px;
-  transition: all 0.2s ease;
-  max-width: fit-content;
-  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #a1a1aa;
+  transition: color 0.2s ease;
+  max-width: 360px;
 }
 
 .footer-location:hover {
-  background-color: #e8e8ed;
-  transform: translateY(-2px);
+  color: #ffffff;
 }
 
 .footer-location svg {
   flex-shrink: 0;
-  color: #1d1d1f;
+  opacity: 0.85;
 }
 
-.footer-location-text {
+.footer-links {
   display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 28px;
+  list-style: none;
 }
 
-.footer-location-primary {
-  font-weight: 600;
-  font-size: 0.95rem;
-  line-height: 1.2;
-  color: #1d1d1f;
+.footer-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #a1a1aa;
+  transition: color 0.2s ease;
 }
 
-.footer-location-secondary {
-  font-size: 0.85rem;
-  color: #86868b;
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #a1a1aa;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-social-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  transform: scale(1.05);
 }
 
 .footer-copy {
   text-align: center;
   font-size: 12px;
-  opacity: 0.6;
+  color: #71717a;
+  line-height: 1.5;
 }
 
 /* ── WhatsApp flotante premium ── */
@@ -1486,5 +1647,38 @@ footer {
 
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .commitments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-main {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .footer-col-left {
+    align-items: center;
+  }
+
+  .footer-col-right {
+    align-items: center;
+  }
+
+  .footer-location {
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .footer-links {
+    justify-content: center;
+    gap: 20px 28px;
+  }
+
+  .footer-social {
+    justify-content: center;
   }
 }

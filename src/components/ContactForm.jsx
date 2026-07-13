@@ -17,7 +17,13 @@ export default function ContactForm() {
     setPhone,
     setSubject,
     setMessage,
+    resetForm,
   } = useQuote()
+
+  const handleNameBlur = () => setName(name.trim())
+  const handlePhoneBlur = () => setPhone(phone.trim())
+  const handleSubjectBlur = () => setSubject(subject.trim())
+  const handleMessageBlur = () => setMessage(message.trim())
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -41,6 +47,7 @@ export default function ContactForm() {
     })
 
     window.open(url, '_blank', 'noopener,noreferrer')
+    resetForm()
   }
 
   const trimmedName = name.trim()
@@ -98,6 +105,7 @@ export default function ContactForm() {
                   placeholder="Ej: Juan Pérez"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
+                  onBlur={handleNameBlur}
                   required
                 />
               </div>
@@ -112,6 +120,7 @@ export default function ContactForm() {
                   placeholder="Ej: 11 6888-4097"
                   value={phone}
                   onChange={(event) => setPhone(event.target.value)}
+                  onBlur={handlePhoneBlur}
                   required
                 />
               </div>
@@ -124,6 +133,7 @@ export default function ContactForm() {
                   className={`form-control${showErrors && !subject ? ' form-control--error' : ''}`}
                   value={subject}
                   onChange={(event) => setSubject(event.target.value)}
+                  onBlur={handleSubjectBlur}
                   required
                 >
                   <option value="" disabled>
@@ -145,6 +155,7 @@ export default function ContactForm() {
                   placeholder="Ej: iPhone 12 de 128GB para canje, o presupuesto cambio de batería iPhone 11..."
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
+                  onBlur={handleMessageBlur}
                   required
                 />
               </div>
