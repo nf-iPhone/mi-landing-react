@@ -162,6 +162,15 @@ export default function ContactForm() {
             </div>
           </div>
         </div>
+
+        <div className="map-container">
+          <iframe
+            title="Ubicación de la oficina"
+            src="https://maps.google.com/maps?q=Limay%201238,%20San%20Antonio%20de%20Padua,%20Buenos%20Aires&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
       </div>
     </section>
   )

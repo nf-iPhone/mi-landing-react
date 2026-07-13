@@ -1232,6 +1232,23 @@ section {
   transform: none;
 }
 
+.map-container {
+  width: 100%;
+  margin: 3rem 0 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background-color: #f5f5f7;
+  border: 1px solid #e5e7eb;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 450px;
+  border: none;
+  display: block;
+}
+
 /* ── Footer ── */
 footer {
   background: var(--text);
@@ -1269,6 +1286,48 @@ footer {
 
 .footer-links a:hover {
   color: #fff;
+}
+
+.footer-location {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #1d1d1f;
+  padding: 1rem;
+  background-color: #f5f5f7;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  max-width: fit-content;
+  margin-bottom: 24px;
+}
+
+.footer-location:hover {
+  background-color: #e8e8ed;
+  transform: translateY(-2px);
+}
+
+.footer-location svg {
+  flex-shrink: 0;
+  color: #1d1d1f;
+}
+
+.footer-location-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.footer-location-primary {
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  color: #1d1d1f;
+}
+
+.footer-location-secondary {
+  font-size: 0.85rem;
+  color: #86868b;
 }
 
 .footer-copy {
@@ -1382,6 +1441,10 @@ footer {
 
   .contact-section {
     padding-bottom: calc(clamp(72px, 10vw, 120px) + 80px);
+  }
+
+  .map-container iframe {
+    height: 300px;
   }
 
   .trust-bar {
