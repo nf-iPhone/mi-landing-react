@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useQuote } from '../context/QuoteContext'
 import { useFadeIn } from '../hooks/useFadeIn'
 import { buildWhatsAppUrl } from '../utils/quote'
@@ -8,6 +8,7 @@ export default function ContactForm() {
   const formFadeRef = useFadeIn()
   const formWrapRef = useRef(null)
   const [submitAttempted, setSubmitAttempted] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
   const {
     name,
     phone,
@@ -19,6 +20,17 @@ export default function ContactForm() {
     setMessage,
     resetForm,
   } = useQuote()
+
+  useEffect(() => {
+    if (!isSuccess) return undefined
+
+    const timer = window.setTimeout(() => {
+      setIsSuccess(false)
+      resetForm()
+    }, 4000)
+
+    return () => window.clearTimeout(timer)
+  }, [isSuccess, resetForm])
 
   const handleNameBlur = () => setName(name.trim())
   const handlePhoneBlur = () => setPhone(phone.trim())
@@ -46,8 +58,11 @@ export default function ContactForm() {
       message: trimmedMessage,
     })
 
-    window.open(url, '_blank', 'noopener,noreferrer')
-    resetForm()
+    setIsSuccess(true)
+
+    window.setTimeout(() => {
+      window.open(url, '_blank', 'noopener,noreferrer')
+    }, 600)
   }
 
   const trimmedName = name.trim()
@@ -94,6 +109,17 @@ export default function ContactForm() {
 
           <div ref={formWrapRef} className="contact-form-wrap">
             <div ref={formFadeRef} className="fade-in">
+            {isSuccess ? (
+              <div className="form-success" role="status" aria-live="polite">
+                <div className="form-success-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </div>
+                <p className="form-success-title">¡Gracias! Ya te estamos redirigiendo a WhatsApp...</p>
+                <div className="form-success-spinner" aria-hidden="true" />
+              </div>
+            ) : (
             <form id="cotizacionForm" onSubmit={handleSubmit} noValidate>
               <div className="form-group">
                 <label htmlFor="name">Nombre Completo</label>
@@ -170,6 +196,7 @@ export default function ContactForm() {
                 <p className="form-error-msg">Completá todos los campos para continuar.</p>
               )}
             </form>
+            )}
             </div>
           </div>
         </div>

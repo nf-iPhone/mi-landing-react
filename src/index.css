@@ -1356,6 +1356,52 @@ section {
   margin-top: 1rem;
 }
 
+.form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  min-height: 320px;
+  padding: 24px 16px;
+}
+
+.form-success-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.form-success-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  max-width: 280px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.form-success-spinner {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: formSuccessSpin 0.8s linear infinite;
+}
+
+@keyframes formSuccessSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .contact-form-wrap select.form-control {
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2386868b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
