@@ -1,4 +1,5 @@
 import { QuoteProvider } from './context/QuoteContext'
+import AnnouncementBar from './components/AnnouncementBar'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import PromoBanner from './components/PromoBanner'
@@ -12,6 +13,7 @@ import WhatsAppFloat from './components/WhatsAppFloat'
 function App() {
   return (
     <QuoteProvider>
+      <AnnouncementBar />
       <Navbar />
       <main>
         <Hero />

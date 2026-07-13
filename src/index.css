@@ -20,6 +20,7 @@
   --radius-pill: 980px;
   --font: 'Poppins', sans-serif;
   --nav-h: 80px;
+  --announcement-h: 34px;
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --transition: 0.35s var(--ease);
 }
@@ -35,7 +36,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-h) + 24px);
+  scroll-padding-top: calc(var(--announcement-h) + var(--nav-h) + 24px);
 }
 
 body {
@@ -148,10 +149,35 @@ button {
   font-size: 14px;
 }
 
+/* ── Announcement bar ── */
+.announcement-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 60;
+  background-color: #1d1d1f;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-align: center;
+  min-height: var(--announcement-h);
+}
+
+.announcement-bar svg {
+  flex-shrink: 0;
+}
+
 /* ── Navbar glassmorphism premium ── */
 .navbar {
   position: fixed;
-  top: 0;
+  top: var(--announcement-h);
   left: 0;
   width: 100%;
   z-index: 50;
@@ -309,7 +335,7 @@ button {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: calc(var(--nav-h) + 4rem) 2rem 4rem;
+  padding: calc(var(--announcement-h) + var(--nav-h) + 4rem) 2rem 4rem;
   position: relative;
   overflow: hidden;
 }
@@ -1393,7 +1419,7 @@ footer {
 
   .nav-links {
     position: fixed;
-    top: var(--nav-h);
+    top: calc(var(--announcement-h) + var(--nav-h));
     left: 0;
     right: 0;
     background: rgba(255, 255, 255, 0.95);
