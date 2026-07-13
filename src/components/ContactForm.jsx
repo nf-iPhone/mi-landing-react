@@ -1,6 +1,5 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useQuote } from '../context/QuoteContext'
-import { useClickOutside } from '../hooks/useClickOutside'
 import { useFadeIn } from '../hooks/useFadeIn'
 import { buildWhatsAppUrl } from '../utils/quote'
 
@@ -8,6 +7,7 @@ export default function ContactForm() {
   const infoRef = useFadeIn()
   const formFadeRef = useFadeIn()
   const formWrapRef = useRef(null)
+  const [submitAttempted, setSubmitAttempted] = useState(false)
   const {
     name,
     phone,
@@ -17,10 +17,7 @@ export default function ContactForm() {
     setPhone,
     setSubject,
     setMessage,
-    resetForm,
   } = useQuote()
-
-  useClickOutside(formWrapRef, resetForm)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -29,7 +26,12 @@ export default function ContactForm() {
     const trimmedPhone = phone.trim()
     const trimmedMessage = message.trim()
 
-    if (!trimmedName || !trimmedPhone || !subject || !trimmedMessage) return
+    if (!trimmedName || !trimmedPhone || !subject || !trimmedMessage) {
+      setSubmitAttempted(true)
+      return
+    }
+
+    setSubmitAttempted(false)
 
     const url = buildWhatsAppUrl({
       name: trimmedName,
@@ -41,6 +43,11 @@ export default function ContactForm() {
     window.open(url, '_blank', 'noopener,noreferrer')
   }
 
+  const trimmedName = name.trim()
+  const trimmedPhone = phone.trim()
+  const trimmedMessage = message.trim()
+  const showErrors = submitAttempted
+
   return (
     <section className="contact-section" id="contacto">
       <div className="container">
@@ -49,6 +56,12 @@ export default function ContactForm() {
             <span className="section-label">Contacto</span>
             <h2>Solicitá tu Cotización</h2>
             <p>Completá el formulario y te redirigimos a WhatsApp con tu solicitud lista para enviar.</p>
+
+            <div className="contact-trust-chips">
+              <span className="contact-trust-chip">Respuesta al instante</span>
+              <span className="contact-trust-chip">Cotización sin compromiso</span>
+              <span className="contact-trust-chip">Atención por WhatsApp</span>
+            </div>
 
             <div className="contact-detail">
               <div className="contact-detail-icon">
@@ -81,7 +94,7 @@ export default function ContactForm() {
                   type="text"
                   name="name"
                   id="name"
-                  className="form-control"
+                  className={`form-control${showErrors && !trimmedName ? ' form-control--error' : ''}`}
                   placeholder="Ej: Juan Pérez"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
@@ -95,7 +108,7 @@ export default function ContactForm() {
                   type="tel"
                   name="phone"
                   id="phone"
-                  className="form-control"
+                  className={`form-control${showErrors && !trimmedPhone ? ' form-control--error' : ''}`}
                   placeholder="Ej: 11 6888-4097"
                   value={phone}
                   onChange={(event) => setPhone(event.target.value)}
@@ -108,7 +121,7 @@ export default function ContactForm() {
                 <select
                   name="subject"
                   id="subject"
-                  className="form-control"
+                  className={`form-control${showErrors && !subject ? ' form-control--error' : ''}`}
                   value={subject}
                   onChange={(event) => setSubject(event.target.value)}
                   required
@@ -128,7 +141,7 @@ export default function ContactForm() {
                 <textarea
                   name="message"
                   id="message"
-                  className="form-control"
+                  className={`form-control${showErrors && !trimmedMessage ? ' form-control--error' : ''}`}
                   placeholder="Ej: iPhone 12 de 128GB para canje, o presupuesto cambio de batería iPhone 11..."
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
@@ -139,6 +152,12 @@ export default function ContactForm() {
               <button type="submit" className="btn btn-submit">
                 Enviar por WhatsApp
               </button>
+              <p className="form-trust-note">
+                🔒 Tus datos están seguros. Respondemos en menos de 15 minutos.
+              </p>
+              {showErrors && (
+                <p className="form-error-msg">Completá todos los campos para continuar.</p>
+              )}
             </form>
             </div>
           </div>

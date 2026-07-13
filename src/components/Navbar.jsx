@@ -23,7 +23,7 @@ export default function Navbar() {
       <div className="container nav-inner">
         <a href="#inicio" className="logo-brand-container" aria-label="iPhone NF — Inicio">
           <div className="logo-img-wrapper">
-            <img src="/assets/logo.jpeg" alt="iPhone NF Isotipo" />
+            <img src={`${import.meta.env.BASE_URL}assets/logo.jpeg`} alt="iPhone NF Isotipo" />
           </div>
           <div className="logo-divider"></div>
           <div className="logo-meta-text">

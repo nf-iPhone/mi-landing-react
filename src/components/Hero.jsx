@@ -17,7 +17,7 @@ export default function Hero() {
           ecosistema iPhone rinda al máximo nivel.
         </p>
         <div className="hero-actions">
-          <a href="#contacto" className="btn">
+          <a href="#contacto" className="btn btn-hero-primary">
             Cotizar mi iPhone
           </a>
           <a href="#productos" className="btn btn-ghost">
@@ -27,20 +27,20 @@ export default function Hero() {
 
         <div className="trust-bar">
           <div className="trust-item">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
             Garantía incluida
           </div>
           <div className="trust-item">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <circle cx="12" cy="12" r="10" />
               <polyline points="12 6 12 12 16 14" />
             </svg>
-            Respuesta en 24 hs
+            Respuesta al instante
           </div>
           <div className="trust-item">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
               <polyline points="22 4 12 14.01 9 11.01" />
             </svg>

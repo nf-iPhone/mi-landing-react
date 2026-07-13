@@ -13,6 +13,7 @@ function ColorVisual({ color, productName, isActive }) {
     <div className={`product-color-layer${isActive ? ' active' : ''}`} aria-hidden={!isActive}>
       {hasImage && color.image ? (
         <img
+          className="product-image"
           src={color.image}
           alt={`${productName} ${color.name}`}
           loading="lazy"
@@ -149,17 +150,46 @@ export default function ProductCard({ product }) {
 
       <div className="product-card-footer">
         <p className="product-price">
-          {product.priceFrom} <span>/ desde</span>
+          {product.priceFrom} <span>Cotización gratuita</span>
         </p>
-        <span
-          className="product-card-cta"
-          role="button"
-          tabIndex={0}
-          onClick={handleCtaClick}
-          onKeyDown={handleCtaKeyDown}
-        >
-          Cotizar este modelo →
-        </span>
+        <div className="product-card-purchase">
+          <span
+            className="product-card-cta"
+            role="button"
+            tabIndex={0}
+            onClick={handleCtaClick}
+            onKeyDown={handleCtaKeyDown}
+          >
+            Cotizar este modelo →
+          </span>
+          <div className="product-card-trust-badges" aria-label="Beneficios de compra">
+            <div className="product-card-trust-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              <span>Garantía incluida</span>
+            </div>
+            <div className="product-card-trust-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="1" y="6" width="18" height="12" rx="2" ry="2" />
+                <line x1="23" y1="13" x2="23" y2="11" />
+                <line x1="6" y1="10" x2="6" y2="14" />
+                <line x1="10" y1="10" x2="10" y2="14" />
+                <line x1="14" y1="10" x2="14" y2="14" />
+              </svg>
+              <span>Batería testeada</span>
+            </div>
+            <div className="product-card-trust-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="1" y="3" width="15" height="13" />
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                <circle cx="5.5" cy="18.5" r="2.5" />
+                <circle cx="18.5" cy="18.5" r="2.5" />
+              </svg>
+              <span>Envío seguro</span>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
   )
