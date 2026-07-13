@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import { PRODUCTS } from '../data/products'
 import {
+  ACCESORIOS_PREMIUM_MESSAGE,
   PLAN_CANJE_MESSAGE,
   buildOtherProductMessage,
   buildProductQuoteMessage,
@@ -37,6 +38,12 @@ export function QuoteProvider({ children }) {
     scrollToContact()
   }, [])
 
+  const selectAccesoriosPremium = useCallback(() => {
+    setSubject('Otra Consulta')
+    setMessage(ACCESORIOS_PREMIUM_MESSAGE)
+    scrollToContact()
+  }, [])
+
   const selectOtherProduct = useCallback((productName) => {
     setSubject('Otra Consulta')
     setMessage(buildOtherProductMessage(productName))
@@ -56,6 +63,7 @@ export function QuoteProvider({ children }) {
       resetForm,
       selectProductForQuote,
       selectPlanCanje,
+      selectAccesoriosPremium,
       selectOtherProduct,
     }),
     [
@@ -66,6 +74,7 @@ export function QuoteProvider({ children }) {
       resetForm,
       selectProductForQuote,
       selectPlanCanje,
+      selectAccesoriosPremium,
       selectOtherProduct,
     ],
   )

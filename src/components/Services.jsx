@@ -21,28 +21,46 @@ const SERVICES = [
   {
     title: 'Accesorios Premium',
     description: 'Fundas, vidrios templados y cargadores homologados para proteger lo que más querés.',
+    accesoriosPremium: true,
     emoji: '🛡️',
   },
 ]
 
-function ServiceCard({ service, onPlanCanje }) {
+function ServiceCard({ service, onPlanCanje, onAccesoriosPremium }) {
   const fadeRef = useFadeIn()
+  const isConsultTrigger = service.planCanje || service.accesoriosPremium
+  const onConsult = service.planCanje
+    ? onPlanCanje
+    : service.accesoriosPremium
+      ? onAccesoriosPremium
+      : undefined
+  const consultClass = service.planCanje
+    ? ' plan-canje-trigger'
+    : service.accesoriosPremium
+      ? ' accesorios-trigger'
+      : ''
 
   const handleKeyDown = (event) => {
-    if (!service.planCanje) return
+    if (!isConsultTrigger) return
     if (event.key !== 'Enter' && event.key !== ' ') return
     event.preventDefault()
-    onPlanCanje()
+    onConsult()
   }
 
   return (
     <article
       ref={fadeRef}
-      className={`service-card fade-in${service.planCanje ? ' plan-canje-trigger' : ''}`}
-      role={service.planCanje ? 'button' : undefined}
-      tabIndex={service.planCanje ? 0 : undefined}
-      aria-label={service.planCanje ? 'Consultar Plan Canje' : undefined}
-      onClick={service.planCanje ? onPlanCanje : undefined}
+      className={`service-card fade-in${consultClass}`}
+      role={isConsultTrigger ? 'button' : undefined}
+      tabIndex={isConsultTrigger ? 0 : undefined}
+      aria-label={
+        service.planCanje
+          ? 'Consultar Plan Canje'
+          : service.accesoriosPremium
+            ? 'Consultar Accesorios Premium'
+            : undefined
+      }
+      onClick={onConsult}
       onKeyDown={handleKeyDown}
     >
       <div className="service-icon" aria-hidden="true">
@@ -56,7 +74,7 @@ function ServiceCard({ service, onPlanCanje }) {
 
 export default function Services() {
   const headerRef = useFadeIn()
-  const { selectPlanCanje } = useQuote()
+  const { selectPlanCanje, selectAccesoriosPremium } = useQuote()
 
   return (
     <section id="servicios">
@@ -73,6 +91,7 @@ export default function Services() {
               key={service.title}
               service={service}
               onPlanCanje={selectPlanCanje}
+              onAccesoriosPremium={selectAccesoriosPremium}
             />
           ))}
         </div>

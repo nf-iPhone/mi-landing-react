@@ -975,12 +975,14 @@ section {
   box-shadow: var(--shadow-md);
 }
 
-.plan-canje-trigger {
+.plan-canje-trigger,
+.accesorios-trigger {
   cursor: pointer;
   border-color: rgba(0, 113, 227, 0.2);
 }
 
-.service-card.plan-canje-trigger::after {
+.service-card.plan-canje-trigger::after,
+.service-card.accesorios-trigger::after {
   content: 'Consultar →';
   font-size: 12px;
   font-weight: 600;

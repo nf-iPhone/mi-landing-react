@@ -20,6 +20,9 @@ export function buildProductQuoteMessage(product, specificVersion, isCtaClick) {
 export const PLAN_CANJE_MESSAGE =
   'Hola! Me interesa acceder al Plan Canje. Mi objetivo es entregar mi equipo actual como parte de pago para actualizarme. ¿Cómo es el proceso de cotización?'
 
+export const ACCESORIOS_PREMIUM_MESSAGE =
+  'Hola, me gustaría consultar por el stock y precios de accesorios premium (cargadores, fundas o vidrios templados).'
+
 export function buildOtherProductMessage(productName) {
   return `Hola! Me interesa recibir información y consultar disponibilidad sobre ${productName}`
 }
